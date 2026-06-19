@@ -3,20 +3,26 @@ import { sleep } from 'k6';
 import { error_check } from '../check/check.js';
 import { scenario } from 'k6/execution';
 import { DownloadFile, GetProfile, PostProfile, PostProfile_2, PostProfile_3, UploadFile } from '../api/example.js';
+import { ConferenceList } from '../api/conference_list_1.js';
+import { ConferenceCreateInstant } from '../api/conference_create_instant_2.js';
+import { ConferenceCreateScheduled } from '../api/conference_create_scheduled_3.js';
+import { ConferenceInfo } from '../api/conference_info_4.js';
+import { CsatFeedback } from '../api/csat_feedback_5.js';
+import { UserProfile } from '../api/user_profile_6.js';
+import { ConferenceJoin } from '../api/conference_join_7.js';
 
 
 
 //============================================================================
 
 export default function () {    //เรียกใช้ API ใน export default function
-  response = GetProfile()
-  //response = PostProfile()
-  //response = PostProfile_2()
-  //response = PostProfile_3(scenario)
-  //response = DownloadFile()
-  //response = UploadFile()
-  //response = UploadFile_2()
-
+  response = ConferenceList()
+  // response = ConferenceCreateInstant()
+  // response = ConferenceCreateScheduled()
+  // response = ConferenceInfo()
+  // response = CsatFeedback()
+  // response = UserProfile()
+  // response = ConferenceJoin()
 
   error_check(response);
   sleep(1)
