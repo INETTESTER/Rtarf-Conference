@@ -32,7 +32,7 @@ const STATUS_TEXT = {
 };
 
 export function ConferenceCreateInstant() {
-    const url = 'https://uat-oneconference.one.th/api/v1/conferences/create';
+    const url = 'https://uat-rtarf-conference.one.th/api/v1/conferences/create';
     const payload = JSON.stringify({
         type: 'instant',
         room_name: 'Test Room',

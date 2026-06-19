@@ -32,7 +32,7 @@ const STATUS_TEXT = {
 };
 
 export function ConferenceCreateScheduled() {
-    const url = 'https://uat-oneconference.one.th/api/v1/conferences/create';
+    const url = 'https://uat-rtarf-conference.one.th/api/v1/conferences/create';
     const payload = JSON.stringify({
         type: 'scheduled',
         room_name: 'Scheduled Room',

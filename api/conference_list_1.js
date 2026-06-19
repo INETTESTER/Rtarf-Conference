@@ -34,7 +34,7 @@ const STATUS_TEXT = {
 };
 
 export function ConferenceList() {
-    const url = 'https://uat-oneconference.one.th/api/v1/conferences/admin/list?page=1&limit=10';
+    const url = 'https://uat-rtarf-conference.one.th/api/v1/conferences/admin/list?page=1&limit=10';
     const params = {
         headers: {
             Authorization: 'Bearer mock-token-for-load-test',
