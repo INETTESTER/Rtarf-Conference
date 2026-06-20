@@ -10,13 +10,14 @@ import { CsatFeedback } from '../api/csat_feedback_5.js';
 import { UserProfile } from '../api/user_profile_6.js';
 import { ConferenceJoin } from '../api/conference_join_7.js';
 import { HealthCheck } from '../api/healthcheck.js';
+import { LoadtestHealth } from '../api/loadtest_health_9.js';
 
 
 
 //============================================================================
 
 export default function () {    //เรียกใช้ API ใน export default function
-  response = ConferenceList()
+  // response = ConferenceList()
   // response = ConferenceCreateInstant()
   // response = ConferenceCreateScheduled()
   // response = ConferenceInfo()
@@ -24,6 +25,7 @@ export default function () {    //เรียกใช้ API ใน export def
   // response = UserProfile()
   // response = ConferenceJoin()
   // response = HealthCheck()
+  response = LoadtestHealth()
 
   error_check(response);
   sleep(1)
@@ -156,6 +158,27 @@ else if (scenariox == 3) {
         timeUnit: '1s',
         preAllocatedVUs: user,
         duration: durationx + 's', // ระบุระยะเวลาที่ต้องการให้ทดสอบ
+        gracefulStop: '120s',
+      },
+    },
+  };
+}
+else if (scenariox == 4) {     // ⬅️ block ใหม่ที่เพิ่ม
+  options = {
+    http: { timeout: '300s' },
+    insecureSkipTLSVerify: true,
+    discardResponseBodies: false,
+    scenarios: {
+      ramp: {
+        executor: 'ramping-arrival-rate',
+        startRate: 0,
+        timeUnit: '1s',
+        preAllocatedVUs: vusx,
+        maxVUs: vusx,
+        stages: [
+          { target: vusx, duration: '30s' },  // ไต่จาก 0 → vusx ใน 30 วิ
+          { target: vusx, duration: '30s' },  // คงที่อีก 30 วิ
+        ],
         gracefulStop: '120s',
       },
     },
