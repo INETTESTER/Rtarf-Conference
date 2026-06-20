@@ -32,7 +32,7 @@ const STATUS_TEXT = {
 };
 
 export function ConferenceInfo() {
-    const url = 'https://uat-rtarf-conference.one.th/api/v1/conferences/info?slug=yzh-vsis-iry';
+    const url = 'https://uat-rtarf-conference.one.th/api/v1/conferences/info?slug=mcz-xfqg-qnc';
     const params = {
         headers: {
             Authorization: 'Bearer mock-token-for-load-test',

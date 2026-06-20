@@ -34,7 +34,7 @@ const STATUS_TEXT = {
 export function ConferenceJoin() {
     const url = 'https://uat-rtarf-conference.one.th/api/v1/conferences/join';
     const payload = JSON.stringify({
-        slug: 'yzh-vsis-iry',
+        slug: 'mcz-xfqg-qnc',
     });
     const params = {
         headers: {

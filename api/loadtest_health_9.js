@@ -32,7 +32,7 @@ const STATUS_TEXT = {
 };
 
 export function LoadtestHealth() {
-    const url = 'https://uat-rtarf-conference.one.th/loadtest/health';
+    const url = 'http://192.168.100.21:30050/api/health'; // https://uat-rtarf-conference.one.th/loadtest/health
     const params = {
         timeout: '300s',
     };
