@@ -18,8 +18,8 @@ import { LoadtestHealth } from '../api/loadtest_health_9.js';
 
 export default function () {    //เรียกใช้ API ใน export default function
   // response = ConferenceList()
-  // response = ConferenceCreateInstant()
-  response = ConferenceCreateScheduled()
+  response = ConferenceCreateInstant()
+  // response = ConferenceCreateScheduled()
   // response = ConferenceInfo()
   // response = CsatFeedback()
   // response = UserProfile()

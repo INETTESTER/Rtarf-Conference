@@ -1,0 +1,54 @@
+{
+    "metrics": {
+        "iteration_duration": {
+            "avg": 0.6659076399999986,
+            "min": 0,
+            "med": 0,
+            "max": 52.64,
+            "p(90)": 1.00221,
+            "p(95)": 4.0006
+        },
+        "iterations": {
+            "count": 2500,
+            "rate": 825.9074616939989
+        },
+        "vus": {
+            "value": 584,
+            "min": 584,
+            "max": 2302
+        },
+        "vus_max": {
+            "min": 2500,
+            "max": 2500,
+            "value": 2500
+        },
+        "checks": {
+            "passes": 0,
+            "fails": 2500,
+            "value": 0
+        },
+        "data_sent": {
+            "count": 0,
+            "rate": 0
+        },
+        "data_received": {
+            "count": 0,
+            "rate": 0
+        }
+    },
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "200 OK": {
+                    "name": "200 OK",
+                    "path": "::200 OK",
+                    "id": "e9654c443eff553da9e69eda7007924e",
+                    "passes": 0,
+                    "fails": 2500
+                }
+            }
+    }
+}
