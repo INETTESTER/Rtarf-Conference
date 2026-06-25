@@ -11,6 +11,7 @@ import { UserProfile } from '../api/user_profile_6.js';
 import { ConferenceJoin } from '../api/conference_join_7.js';
 import { HealthCheck } from '../api/healthcheck.js';
 import { LoadtestHealth } from '../api/loadtest_health_9.js';
+import { ConferenceRecordStart } from '../api/conference_record_start_10.js';
 
 
 
@@ -18,12 +19,13 @@ import { LoadtestHealth } from '../api/loadtest_health_9.js';
 
 export default function () {    //เรียกใช้ API ใน export default function
   // response = ConferenceList()
-  response = ConferenceCreateInstant()
+  // response = ConferenceCreateInstant()
   // response = ConferenceCreateScheduled()
   // response = ConferenceInfo()
   // response = CsatFeedback()
   // response = UserProfile()
   // response = ConferenceJoin()
+  response = ConferenceRecordStart()
   // response = HealthCheck()
   // response = LoadtestHealth()
 

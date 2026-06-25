@@ -1,7 +1,74 @@
+// // conference_create_instant_2.js
+// import http from 'k6/http';
+
+// const KNOWN_STATUS = [200, 201, 204, 400, 401, 403, 404, 422, 429, 500, 502, 503, 504];
+
+// const STATUS_TEXT = {
+//     520: 'Web Server Returned an Unknown Error',
+//     521: 'Web Server Is Down',
+//     522: 'Connection Timed Out',
+//     523: 'Origin Is Unreachable',
+//     524: 'A Timeout Occurred',
+//     525: 'SSL Handshake Failed',
+//     526: 'Invalid SSL Certificate',
+//     527: 'Railgun Error',
+//     530: 'Origin DNS Error',
+//     408: 'Request Timeout',
+//     409: 'Conflict',
+//     410: 'Gone',
+//     413: 'Payload Too Large',
+//     418: "I'm a Teapot",
+//     421: 'Misdirected Request',
+//     423: 'Locked',
+//     425: 'Too Early',
+//     426: 'Upgrade Required',
+//     431: 'Request Header Fields Too Large',
+//     451: 'Unavailable For Legal Reasons',
+//     501: 'Not Implemented',
+//     505: 'HTTP Version Not Supported',
+//     507: 'Insufficient Storage',
+//     508: 'Loop Detected',
+//     511: 'Network Authentication Required',
+// };
+
+// export function ConferenceCreateInstant() {
+//     const url = 'https://uat-rtarf-conference.one.th/api/v1/conferences/create';
+//     const payload = JSON.stringify({
+//         room_name: 'Conference Room A',
+//         room_options: {
+//             empty_timeout: 10,
+//         },
+//         type: 'instant',
+//     });
+//     const params = {
+//         headers: {
+//             Authorization: 'Bearer mock-token-for-load-test',
+//             'Content-Type': 'application/json',
+//         },
+//         timeout: '300s',
+//     };
+//     const response = http.post(url, payload, params);
+
+//     const s = response.status;
+//     if (!KNOWN_STATUS.includes(s)) {
+//         if (s === 0) {
+//             console.error(`NETWORK ERROR | error_code=${response.error_code} | error=${response.error}`);
+//         } else {
+//             const label = STATUS_TEXT[s] || 'Unknown';
+//             console.error(`UNKNOWN HTTP ${s} | ${label} | body=${String(response.body).slice(0, 300)}`);
+//         }
+//     }
+
+//     return response;
+// }
+
 // conference_create_instant_2.js
 import http from 'k6/http';
 
 const KNOWN_STATUS = [200, 201, 204, 400, 401, 403, 404, 422, 429, 500, 502, 503, 504];
+
+// status ที่ถือว่าสำเร็จ — นอกจากนี้คือ error ที่อยากดู body
+const OK_STATUS = [200, 201, 204];
 
 const STATUS_TEXT = {
     520: 'Web Server Returned an Unknown Error',
@@ -50,13 +117,15 @@ export function ConferenceCreateInstant() {
     const response = http.post(url, payload, params);
 
     const s = response.status;
-    if (!KNOWN_STATUS.includes(s)) {
-        if (s === 0) {
-            console.error(`NETWORK ERROR | error_code=${response.error_code} | error=${response.error}`);
-        } else {
-            const label = STATUS_TEXT[s] || 'Unknown';
-            console.error(`UNKNOWN HTTP ${s} | ${label} | body=${String(response.body).slice(0, 300)}`);
-        }
+
+    if (s === 0) {
+        // network error — ไม่มี body
+        console.error(`NETWORK ERROR | error_code=${response.error_code} | error=${response.error}`);
+    } else if (!OK_STATUS.includes(s)) {
+        // HTTP error ทุกตัวที่ไม่ใช่ 2xx — log พร้อม body
+        const label = STATUS_TEXT[s] || '';
+        const bodyText = response.body ? String(response.body).slice(0, 1000) : '(empty)';
+        console.error(`HTTP ${s} ${label} | body=${bodyText}`);
     }
 
     return response;
